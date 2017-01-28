@@ -1,12 +1,12 @@
 from random import choice, randint
 from Tkinter import *
-
+from random import randint
 
 class App:
 
     def __init__(self):
         self.root = Tk()
-        self.root.wm_title('Lights Out')
+        self.root.wm_title('Bugs Out')
 
         self.board = [0]*25
         self.initial_state = [False]*25
@@ -53,7 +53,7 @@ class App:
 
         for row in range(5):
             for col in range(5):
-                self.board[row*5+col] = Checkbutton(self.wrapper)
+                self.board[row*5+col] = Checkbutton(self.wrapper, text="Bug #" + str(randint(100,999)))
                 self.board[row*5+col].grid(row=row+1, column=col)
                 self.board[row*5+col].config(command=lambda row=row,
                                              col=col: self.switch(row, col))
@@ -122,7 +122,7 @@ class App:
 
     def victory_check(self):
         if True not in self.values:
-            self.msg.config(text='Well done, you won!')
+            self.msg.config(text='Well done, you fixed all the bugs')
             self.action_btn.config(text='Next Game', command=self.initialise)
             for i in range(25):
                 self.board[i].config(state='disabled')
